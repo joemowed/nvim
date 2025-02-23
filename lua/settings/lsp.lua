@@ -78,7 +78,8 @@ require("lspconfig").clangd.setup {
     cmd = {
         "clangd",
         "--offset-encoding=utf-16",
-        "--query-driver=/usr/bin/arm-none-eabi-**"
+        "--query-driver=/usr/bin/arm-none-eabi-**",
+        "--header-insertion=never"
     },
 }
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
