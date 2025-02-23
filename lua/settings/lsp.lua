@@ -1,8 +1,8 @@
 local lsp = require("lsp-zero")
 
+local luasnip = require("luasnip")
 
 -- Fix Undefined global 'vim'
-
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -14,12 +14,24 @@ cmp.setup({
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                if luasnip.expandable() then
+                    luasnip.expand()
+                else
+                    cmp.confirm({
+                        select = true,
+                    })
+                end
+            else
+                fallback()
+            end
+        end),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
-        -- { name = 'luasnip' }, -- For luasnip users.
+        { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'snippy' }, -- For snippy users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
     }, {

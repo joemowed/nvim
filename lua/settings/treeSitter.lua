@@ -19,3 +19,25 @@ require 'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
     },
 }
+require("nvim-treesitter.configs").setup({
+    textobjects = {
+        move = {
+            enable = true,
+            set_jumps = true,
+            goto_previous_start = {
+                ["[["] = "@parameter.inner",
+            },
+            goto_next_start = {
+                ["]]"] = "@parameter.inner",
+            },
+        },
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ["iq"] = "@parameter.inner",
+                ["aq"] = "@parameter.outer",
+            }
+        }
+    }
+})
