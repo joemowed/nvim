@@ -34,6 +34,9 @@ wk.register({
         },
         u = { "undotree toggle" },
         w = { "save all files" },
+        b = {
+            u = "build auto-ocd project (\"auto-ocd -b\")"
+        }
 
     },
     ["<leader>lrr"] = "leetcode resize",
