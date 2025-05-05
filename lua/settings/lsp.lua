@@ -82,6 +82,28 @@ require("lspconfig").clangd.setup {
         "--header-insertion=never"
     },
 }
+require("lspconfig").cssls.setup {
+    settings = {
+        css = {
+            validate = true,
+            lint = {
+                unknownAtRules = "ignore"
+            }
+        },
+        scss = {
+            validate = true,
+            lint = {
+                unknownAtRules = "ignore"
+            }
+        },
+        less = {
+            validate = true,
+            lint = {
+                unknownAtRules = "ignore"
+            }
+        },
+    },
+}
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
     'confirm_done',
@@ -95,3 +117,18 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 require 'lspconfig'.neocmake.setup {
     capabilities = capabilities,
 }
+
+-- Create group to assign commands
+-- "clear = true" must be set to prevent loading an
+-- auto-command repeatedly every time a file is resourced
+local autocmd_group = vim.api.nvim_create_augroup("Custom auto-commands", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { "*.css", "*.html", "*.ts" },
+    desc = "Format CSS and HTML on save",
+    callback = function()
+        local fileName = vim.api.nvim_buf_get_name(0)
+        vim.cmd(":silent !prettier -w " .. fileName)
+    end,
+    group = autocmd_group,
+})
