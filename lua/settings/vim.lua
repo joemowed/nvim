@@ -23,7 +23,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 --build auto-ocd project
-vim.keymap.set("n", "<leader>d", ":wa<CR>:!auto-ocd -b<CR>")
+vim.keymap.set("n", "<leader>d", ":wa<CR>:!./cmake/build.sh<CR>")
 vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
 vim.keymap.set("n", "<leader>lrr", ":lua vim.api.nvim_win_set_width(0,170)<CR>")
 vim.keymap.set("n", "<leader>q", ":wa<CR>:q<CR>")
