@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import sys
+def exitOnFail(ret):
+    if ret != 0:
+        print("\033[31mSuper git fail.....aborting\033[0m")
+        sys.exit()
+if __name__ == "__main__":  
+    parser = argparse.ArgumentParser(description="Super git -- shortcuts")
+    parser.add_argument("-l","--local", help="Add all files and commit locally, do not push to remote", action="store_true")
+    parser.add_argument("message", nargs='+',help="The git commit message")
+    args = parser.parse_args()
+    message = ""
+    for word in args.message:
+        message+=word+' '
+    ret = os.system("git add .")
+    exitOnFail(ret)
+    ret = os.system(f"git commit -am\"{message}\"")
+    exitOnFail(ret)
+    green_text = "\033[32m"
+    reset_color = "\033[0m"
+    if( not args.local):
+        ret = os.system("git push")
+        exitOnFail(ret)
+        print(f"{green_text}Super git success -- Pushed to remote{reset_color}")
+    else:
+        print(f"{green_text}Super git success -- Commited locally{reset_color}")
+
