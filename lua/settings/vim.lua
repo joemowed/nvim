@@ -35,3 +35,8 @@ vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
     pattern = '*',
     command = 'silent! normal! g`"zv',
 })
+
+vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+vim.keymap.set('t', '<C-f>', [[<Cmd>ToggleTerm<CR>]], opts)
+vim.keymap.set('n', '<C-f>', [[<Cmd>ToggleTerm<CR><Cmd>]], opts)
+vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
