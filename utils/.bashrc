@@ -123,8 +123,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
+#check if ng is installed, only load if ng return 0
+if ng &>/dev/null;then
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+    source <(ng completion script)
+fi
 
 export EDITOR="nvim"
