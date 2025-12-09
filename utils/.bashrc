@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 #. ${HOME}/.powerline-simple.sh
-. ${HOME}/.config/nvim/utils/.powerline-simple.sh
+${HOME}/.config/nvim/utils/.powerline-simple.sh
 
 
 export NVM_DIR="$HOME/.nvm"
