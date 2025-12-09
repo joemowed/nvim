@@ -115,6 +115,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+#. ${HOME}/.powerline-simple.sh
 . ${HOME}/.config/nvim/utils/.powerline-simple.sh
 
 
