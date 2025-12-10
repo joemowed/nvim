@@ -40,3 +40,13 @@ vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
 vim.keymap.set('t', '<C-f>', [[<Cmd>ToggleTerm<CR>]], opts)
 vim.keymap.set('n', '<C-f>', [[<Cmd>ToggleTerm<CR><Cmd>]], opts)
 vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+
+
+function ToggleSpell()
+    vim.wo.spell = not vim.wo.spell
+    -- Optional: Display a message to confirm the state
+    print("Spell check is " .. (vim.wo.spell and "ON" or "OFF"))
+end
+
+-- Keymap example: Map <Leader>ss to call the Toggle Spell function
+vim.keymap.set("n", "<Leader>s", ToggleSpell, { desc = "Toggle Spell Check" })
