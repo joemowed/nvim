@@ -73,7 +73,7 @@ require('mason-lspconfig').setup({
     },
 })
 
-require("lspconfig").clangd.setup {
+vim.lsp.config.clangd={
     on_attach = on_attach,
     cmd = {
         "clangd",
@@ -82,7 +82,7 @@ require("lspconfig").clangd.setup {
         "--header-insertion=never"
     },
 }
-require("lspconfig").cssls.setup {
+vim.lsp.config.cssls =  {
     settings = {
         css = {
             validate = true,
@@ -114,7 +114,7 @@ cmp.event:on(
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require 'lspconfig'.neocmake.setup {
+vim.lsp.config.neocmake={
     capabilities = capabilities,
 }
 
